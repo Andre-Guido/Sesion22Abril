@@ -18,7 +18,7 @@ public class Main {
         System.out.println("Total a pagar: " + productos.getMonto());
         */
         ProductoServicio productos = new ProductoServicio();
-         String menu = "Jaguar Coffee \n1. Agregar. \n2. Ver. \n3. Salir. \nOpción: ";
+         String menu = "Jaguar Coffee \n1. Agregar. \n2. Ver. \n3. Buscar Producto. \n4. Buscar Producto por Nombre. \n5. Modificar Producto. \n6. Eliminar Producto. \n7. Salir. \nOpción: ";
          String nombre, precio, cantidad, opcion = "0";
          do {
              opcion = JOptionPane.showInputDialog(null, menu);
@@ -33,11 +33,32 @@ public class Main {
                     JOptionPane.showMessageDialog(null, productos.getProductos());
                  }
                  case "3" ->{
+                     nombre =  JOptionPane.showInputDialog(null, "Nombre del Producto: ");
+                     precio = JOptionPane.showInputDialog(null, "Precio del Producto: ");
+                     cantidad = JOptionPane.showInputDialog(null, "Cantidad del Producto: ");
+                     JOptionPane.showMessageDialog(null, productos.buscarProducto(nombre, Integer.parseInt(cantidad), Double.parseDouble(precio)));
+                 }
+                 case "4" ->{
+                     nombre =  JOptionPane.showInputDialog(null, "Nombre del Producto: ");
+                     JOptionPane.showMessageDialog(null, productos.buscarProducto(nombre));
+                 }
+                 case "5" ->{
+                     nombre =  JOptionPane.showInputDialog(null, "Nombre del Producto: ");
+                     precio = JOptionPane.showInputDialog(null, "Precio del Producto: ");
+                     cantidad = JOptionPane.showInputDialog(null, "Cantidad del Producto: ");
+                     JOptionPane.showMessageDialog(null, productos.editarProducto(nombre, Double.parseDouble(precio), Integer.parseInt(cantidad)));
+                 }
+                 case "6" ->{
+                     nombre =  JOptionPane.showInputDialog(null, "Nombre del Producto: ");
+                     JOptionPane.showMessageDialog(null, productos.eliminarProducto(nombre));
+
+                 }
+                 case "7" -> {
                      JOptionPane.showMessageDialog(null, "Adiós.");
                  }
                  default -> JOptionPane.showMessageDialog(null, "Opción inválida.");
              }
 
-         }while (!opcion.equals("3"));
+         }while (!opcion.equals("7"));
     }
 }
